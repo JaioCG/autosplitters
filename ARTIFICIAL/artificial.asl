@@ -1,4 +1,4 @@
-// ARTIFICIAL Autosplitter v1.0
+// ARTIFICIAL Autosplitter v1.1
 // Game Engine: Unity
 // Created by Jaio
 
@@ -27,7 +27,7 @@ start {
 }
 
 split {
-    return old.levelID < current.levelID;
+    return (old.levelID < current.levelID) && current.isRunning;
 }
 
 reset {
