@@ -9,6 +9,7 @@ startup {
     Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Unity");
     vars.Helper.GameName = "ARTIFICIAL";
 
+    // Alert users that Game Time is used
     vars.Helper.AlertGameTime();
 }
 
