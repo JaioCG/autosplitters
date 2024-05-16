@@ -7,7 +7,7 @@
 - Speedrun Community Discord Server: N/A
 
 ## Features:
-- [x] Demo Support (Latest Version)
+- [x] Demo Support (Latest version)
 - [ ] Full Game Support (Not yet released)
-- [x] Full Game Timing (TERMIUS through TLOW TIDE)
+- [x] Full Game Timing (TERMIUS start through LOW TIDE end)
 - [ ] IL Timing (Checkpoints and what not)
