@@ -30,7 +30,7 @@ init {
 }
 
 update {
-    print("Session time: " + current.timeInSession);
+    print("State: " + current.gameState + " Level: " + current.levelNumber + " Scene Time: " + current.timeInScene + " Session Time: " + current.timeInSession);
 }
 
 start {
@@ -53,9 +53,10 @@ split {
     };
 }
 
-reset {
-    return current.levelNumber == 0; // Main menu
-}
+// Automatic resetting currently broken, Tailwind cutscene brings user back to menu scene
+// reset {
+//     return current.levelNumber == 0; // Main menu
+// }
 
 gameTime {
     if (!settings["ilTimer"]) {

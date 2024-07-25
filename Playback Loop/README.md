@@ -11,3 +11,7 @@
 -   [x] Full game timing (matches in-game Session Timer)
 -   [x] Automatic full game resetting
 -   [x] Individual level timing (matches in-game Scene Timer)
+
+## Bugs
+
+-   Automatic resetting broken in Tailwind, the cutscene afterwards technically brings the user back to the menu scene
