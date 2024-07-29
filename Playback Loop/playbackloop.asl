@@ -42,7 +42,15 @@ start {
 }
 
 split {
-    return current.gameState == 4 && old.gameState != 4;
+    if (!settings["ilTimer"]) {
+        // Currently splits when starting next level, which isn't ideal.
+        // Could use "current.gameState == 4 && old.gameState != 4" to split on level finish, however
+        // that leaves the split one tick off of in-game timer. Presumably, the gameState changes
+        // one tick before the speedrun timer actually stops.
+        return old.levelNumber < current.levelNumber;
+    } else {
+        return current.gameState == 4 && old.gameState != 4;
+    };
 }
 
 reset {
