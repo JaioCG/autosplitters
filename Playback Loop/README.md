@@ -14,4 +14,5 @@
 
 ## Bugs/Issues
 
--   None for now, please DM me if any come up!
+-   Restarting level on Sunrise doesn't actually reset the timer, only sets it back to 0, so it's technically not a "new attempt".
+-   Splitting using gameState splits 1 tick (0.02s) before the timer pauses, so segment times are one tick off IGT.
