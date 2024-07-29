@@ -23,6 +23,7 @@ init {
         vars.Helper["levelNumber"] = mono.Make<int>("AutoSplitterData", "levelNumber");
         vars.Helper["totalLevels"] = mono.Make<int>("AutoSplitterData", "totalLevels");
         vars.Helper["gameState"] = mono.Make<int>("AutoSplitterData", "gameState");
+        vars.Helper["timerRunning"] = mono.Make<bool>("AutoSplitterData", "timerRunning");
         // GameState: Idle, Playback, RecordingPlayback, Blocked, Transitioning, MainMenu, CutScene
 
         return true;
@@ -42,19 +43,11 @@ start {
 }
 
 split {
-    if (!settings["ilTimer"]) {
-        // Currently splits when starting next level, which isn't ideal.
-        // Could use "current.gameState == 4 && old.gameState != 4" to split on level finish, however
-        // that leaves the split one tick off of in-game timer. Presumably, the gameState changes
-        // one tick before the speedrun timer actually stops.
-        return old.levelNumber < current.levelNumber;
-    } else {
-        return current.gameState == 4 && old.gameState != 4;
-    };
+    return !current.timerRunning && old.timerRunning;
 }
 
 reset {
-    // Use gameState instead of level number to dissern between going manually to menu and being in
+    // Use gameState instead of level number to discern between going manually to menu and being in
     // the cutscene after Tailwind.
     return current.gameState == 5;
 }
