@@ -23,7 +23,7 @@ init {
         vars.Helper["levelNumber"] = mono.Make<int>("AutoSplitterData", "levelNumber");
         vars.Helper["totalLevels"] = mono.Make<int>("AutoSplitterData", "totalLevels");
         vars.Helper["gameState"] = mono.Make<int>("AutoSplitterData", "gameState");
-        // GameState: Idle, Playback, RecordingPlayback, Blocked, Transitioning
+        // GameState: Idle, Playback, RecordingPlayback, Blocked, Transitioning, MainMenu, CutScene
 
         return true;
     });
@@ -42,21 +42,14 @@ start {
 }
 
 split {
-    if (!settings["ilTimer"]) {
-        // Only updates when clicking any key when starting a level
-        // Best case scenario, it splits on level finish, but I don't think there's a good way of
-        // doing that without using gameState, which repeatedly calls.
-        return old.levelNumber < current.levelNumber;
-    } else {
-        // Split immediately on level finish, can't use for fullgame cause it keeps calling afterwards
-        return current.gameState == 4;
-    };
+    return current.gameState == 4 && old.gameState != 4;
 }
 
-// Automatic resetting currently broken, Tailwind cutscene brings user back to menu scene
-// reset {
-//     return current.levelNumber == 0; // Main menu
-// }
+reset {
+    // Use gameState instead of level number to dissern between going manually to menu and being in
+    // the cutscene after Tailwind.
+    return current.gameState == 5;
+}
 
 gameTime {
     if (!settings["ilTimer"]) {
