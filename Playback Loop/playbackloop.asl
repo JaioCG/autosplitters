@@ -23,33 +23,30 @@ init {
         vars.Helper["levelNumber"] = mono.Make<int>("AutoSplitterData", "levelNumber");
         vars.Helper["totalLevels"] = mono.Make<int>("AutoSplitterData", "totalLevels");
         vars.Helper["gameState"] = mono.Make<int>("AutoSplitterData", "gameState");
+        // gameState: Idle, Playback, RecordingPlayback, Blocked, Transitioning, MainMenu, CutScene
         vars.Helper["timerRunning"] = mono.Make<bool>("AutoSplitterData", "timerRunning");
-        // GameState: Idle, Playback, RecordingPlayback, Blocked, Transitioning, MainMenu, CutScene
 
         return true;
     });
 }
 
-update {
-    print("State: " + current.gameState + " Level: " + current.levelNumber + " Scene Time: " + current.timeInScene + " Session Time: " + current.timeInSession);
-}
-
 start {
     if (!settings["ilTimer"]) {
-        return (current.gameState == 0) && (current.levelNumber == 1);
+        return (current.gameState == 0) && (current.levelNumber == 1); // Require Sunrise
     } else {
-        return (current.gameState == 0) && (current.levelNumber != 0);
+        return (current.gameState == 0) && (current.levelNumber != 0); // Any level
     };
 }
 
 split {
+    // Splits on finishing level (does not re-call)
     return !current.timerRunning && old.timerRunning;
 }
 
 reset {
     // Use gameState instead of level number to discern between going manually to menu and being in
     // the cutscene after Tailwind.
-    return current.gameState == 5;
+    return current.gameState == 5 || (current.timeInSession < old.timeInSession);
 }
 
 gameTime {
