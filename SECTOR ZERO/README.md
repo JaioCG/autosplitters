@@ -1,15 +1,15 @@
-# ARTIFICIAL
+# SECTOR ZERO
 
 -   Developer: Ondrej Angelovic/SimpleGhost
--   Store Link: https://store.steampowered.com/app/904510/ARTIFICIAL/
+-   Store Link: https://store.steampowered.com/app/2352050/SECTOR_ZERO/
 -   Game Engine: Unity
 -   Developer's Discord Server: https://discord.gg/SmaUjYH
 -   Speedrun Community Discord Server: N/A
 
 ## Features
 
--   [x] Demo Support (Latest version)
--   [ ] Full Game Support (Not yet released)
+-   [ ] Demo Support (Latest version)
+-   [X] Full Game Support
 -   [ ] IL Timing (Checkpoints and what not)
 
 ## Bugs/Issues
